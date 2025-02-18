@@ -1,9 +1,13 @@
 #pragma once
+#include <wincrypt.h>
 class CEngine
 {
 private:
-	HWND	m_hMainWnd;
-	POINT	m_hResolution;
+	HWND	m_hMainHwnd;
+	POINT	m_Resolution;
+
+public:
+	int init(HWND _hWnd, POINT _Resolution);
 
 public:
 	static CEngine* GetInst()
