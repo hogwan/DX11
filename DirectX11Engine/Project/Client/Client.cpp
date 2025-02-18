@@ -3,7 +3,7 @@
 
 #include "framework.h"
 #include "Client.h"
-#include <Engine/Test.h>
+#include <Engine/CEngine.h>
 
 #ifdef _DEBUG
 #pragma comment(lib, "Engine/Engine_d.lib")
@@ -16,7 +16,6 @@ HINSTANCE hInst;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
@@ -25,9 +24,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-
-    int Value = Add(10, 20);
-
     MyRegisterClass(hInstance);
 
     hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
@@ -45,6 +41,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
+
+    // CEngine 객체 초기화
+    CEngine* pEngine = CEngine::GetInst();
 
     // 단축키 테이블
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
@@ -69,7 +68,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         }
     }
-
     return (int) msg.wParam;
 }
 
