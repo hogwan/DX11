@@ -1,24 +1,19 @@
 #pragma once
 #include <wincrypt.h>
 class CEngine
+	: public CSingleton<CEngine>
 {
+	SINGLE(CEngine)
 private:
 	HWND	m_hMainHwnd;
 	POINT	m_Resolution;
 
 public:
+	HWND GetMainWnd() { return m_hMainHwnd; }
+
 	int init(HWND _hWnd, POINT _Resolution);
 	void progress();
 
-public:
-	static CEngine* GetInst()
-	{
-		static CEngine Core;
-		return &Core;
-	}
-private:
-	CEngine();
-	CEngine(const CEngine& _origin) = delete;
-	~CEngine();
+
 };
 

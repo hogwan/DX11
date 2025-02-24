@@ -17,6 +17,27 @@
     <Filter Include="03. Device">
       <UniqueIdentifier>{64f8d9f4-e212-4681-a4fc-d54bdf1ef191}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{1052fe67-52d3-4035-b78a-988469bdb117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL">
+      <UniqueIdentifier>{947a7154-0582-41f9-a5dc-ad2acc136eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\2D">
+      <UniqueIdentifier>{418b000d-84f6-430e-94e9-ed996aa28643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager">
+      <UniqueIdentifier>{00fcf74d-08be-4113-b9cf-3a2dedf5d32c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\01. TimeMgr">
+      <UniqueIdentifier>{ac2a541e-e561-4056-a2db-3d7fdac2ed85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\02. PathMgr">
+      <UniqueIdentifier>{e3c61b92-a4c3-4585-b157-075f852f729e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Manager\03. KeyMgr">
+      <UniqueIdentifier>{9727f968-408d-466f-a505-5d1e1248193f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -35,6 +56,27 @@
       <Filter>03. Device</Filter>
     </ClInclude>
     <ClInclude Include="Temp.h" />
+    <ClInclude Include="struct.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>04.Manager\01. TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>04.Manager\02. PathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>04.Manager\03. KeyMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -50,5 +92,24 @@
       <Filter>03. Device</Filter>
     </ClCompile>
     <ClCompile Include="Temp.cpp" />
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>04.Manager\01. TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>04.Manager\02. PathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>04.Manager\03. KeyMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl">
+      <Filter>Module</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="std2d.fx">
+      <Filter>HLSL\2D</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
