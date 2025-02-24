@@ -30,7 +30,19 @@ int CEngine::init(HWND _hWnd, POINT _Resolution)
 		return E_FAIL;
 	}
 
-	// SwapChain »ı¼º
+	
 
 	return S_OK;
+}
+
+void CEngine::progress()
+{
+	// Level->tick();
+
+	float ClearColor[4] = { 0.3f,0.3f,0.3f,1.f };
+	CDevice::GetInst()->ClearTarget(ClearColor);
+
+	// Level->render();
+
+	CDevice::GetInst()->Present();
 }
