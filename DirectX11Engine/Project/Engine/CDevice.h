@@ -17,12 +17,6 @@ private:
 	ComPtr<ID3D11Texture2D>			m_DepthStencilTex;
 	ComPtr<ID3D11DepthStencilView>	m_DSV;
 public:
-	static CDevice* GetInst()
-	{
-		static CDevice mgr;
-		return &mgr;
-	}
-public:
 	int init(HWND _hWnd, POINT _Resolution);
 	void ClearTarget(float(_ArrColor)[4]);
 	void Present() { m_SwapChain->Present(0, 0); }

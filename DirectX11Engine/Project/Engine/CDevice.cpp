@@ -55,8 +55,8 @@ int CDevice::init(HWND _hWnd, POINT _Resolution)
 	D3D11_VIEWPORT viewport = {};
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
-	viewport.Width = m_RenderResolution.x;
-	viewport.Height = m_RenderResolution.y;
+	viewport.Width = static_cast<FLOAT>(m_RenderResolution.x);
+	viewport.Height = static_cast<FLOAT>(m_RenderResolution.y);
 
 	// 깊이 텍스쳐에 저장되는 깊이 Min, Max 지정
 	viewport.MinDepth = 0;
@@ -108,27 +108,18 @@ int CDevice::CreateSwapChain()
 	Desc.SampleDesc.Quality = 0;
 
 
-	IDXGIDevice* pDXGIDevice = nullptr;
-	IDXGIAdapter* pAdapter = nullptr;
-	IDXGIFactory* pFactory = nullptr;
+	ComPtr<IDXGIDevice> pDXGIDevice = nullptr;
+	ComPtr<IDXGIAdapter> pAdapter = nullptr;
+	ComPtr<IDXGIFactory> pFactory = nullptr;
 
-	m_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDXGIDevice);
-	pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdapter);
-	pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
+	m_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)pDXGIDevice.GetAddressOf());
+	pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)pAdapter.GetAddressOf());
+	pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)pFactory.GetAddressOf());
 
 	if (FAILED(pFactory->CreateSwapChain(m_Device.Get(), &Desc, m_SwapChain.GetAddressOf())))
 	{
 		return E_FAIL;
 	}
-
-	if (FAILED(CreateView()))
-	{
-		return E_FAIL;
-	}
-
-	pDXGIDevice->Release();
-	pAdapter->Release();
-	pFactory->Release();
 
 	return S_OK;
 }
