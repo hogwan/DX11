@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Default">
       <UniqueIdentifier>{9e382506-2c6e-4f1c-8d49-36e54dff9fce}</UniqueIdentifier>
     </Filter>
@@ -37,6 +33,36 @@
     </Filter>
     <Filter Include="04.Manager\03. KeyMgr">
       <UniqueIdentifier>{9727f968-408d-466f-a505-5d1e1248193f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.GameObject">
+      <UniqueIdentifier>{68c053f1-f641-4ddd-82cb-2b75c23f3c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Component">
+      <UniqueIdentifier>{14de4157-038d-4c16-a4f4-18945427eb3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset">
+      <UniqueIdentifier>{1fab62ce-d530-49e6-ae3f-c405349b8c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Mesh">
+      <UniqueIdentifier>{46b4efb1-42b7-45c4-b152-cbb826716575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Sound">
+      <UniqueIdentifier>{7f12e8f1-2637-48fc-b5d8-7f471be122ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Texture">
+      <UniqueIdentifier>{da31fed9-6489-4bea-96f4-56c8b6f91a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Material">
+      <UniqueIdentifier>{6a12cc5f-0a0a-48a3-9ebc-31903e3afdb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\MeshData">
+      <UniqueIdentifier>{627cf5ea-cef1-4f70-90eb-0b6d05af4b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Prefab">
+      <UniqueIdentifier>{662de118-58ee-4f39-a3fb-7c4f8724ed96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Shader">
+      <UniqueIdentifier>{061ab1a6-5bd0-484d-a215-36f45033a6e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +103,24 @@
     <ClInclude Include="CKeyMgr.h">
       <Filter>04.Manager\03. KeyMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CEntity.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>05.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CAsset.h">
+      <Filter>07.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>06.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CMesh.h">
+      <Filter>07.Asset\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -100,6 +144,21 @@
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
       <Filter>04.Manager\03. KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntity.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>05.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CAsset.cpp">
+      <Filter>07.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>06.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CMesh.cpp">
+      <Filter>07.Asset\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

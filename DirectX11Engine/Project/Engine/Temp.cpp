@@ -45,6 +45,8 @@
 // RenderTargetTexture
 // DepthStencilTexture
 
+// Mesh
+
 // 정점 정보를 저장하는 버퍼
 ComPtr<ID3D11Buffer> g_VB;
 
@@ -60,6 +62,9 @@ ComPtr<ID3D11InputLayout> g_Layout;
 // System Mem 정점 정보
 Vtx g_arrVtx[4] = {};
 UINT g_arrIdx[6] = {0,2,3,0,1,2};
+
+// 물체의 위치값
+Vec3 g_ObjectPos;
 
 // HLSL
 // Vertex Shader
@@ -89,7 +94,7 @@ int TempInit()
 	g_arrVtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
 
 	g_arrVtx[3].vPos = Vec3(-0.5f, -0.5f, 0.f);
-	g_arrVtx[3].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	g_arrVtx[3].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
 
 	// 정점 버퍼 생성
 	D3D11_BUFFER_DESC VBDesc = {};
@@ -128,6 +133,23 @@ int TempInit()
 	ISubDesc.pSysMem = g_arrIdx;
 
 	if (FAILED(DEVICE->CreateBuffer(&IBDesc, &ISubDesc, g_IB.GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	//ConstantBuffer
+	D3D11_BUFFER_DESC CBDesc = {};
+
+	CBDesc.ByteWidth = sizeof(tTransform);
+	CBDesc.MiscFlags = 0;
+
+	CBDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+	// 읽기, 쓰기 가능
+	CBDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	CBDesc.Usage = D3D11_USAGE_DYNAMIC;
+
+	if (FAILED(DEVICE->CreateBuffer(&CBDesc, nullptr, g_CB.GetAddressOf())))
 	{
 		return E_FAIL;
 	}
@@ -209,6 +231,8 @@ int TempInit()
 		return E_FAIL;
 	}
 
+	g_ObjectPos = Vec3(0.f, 0.f, 0.f);
+
 	return S_OK;
 }
 
@@ -222,42 +246,34 @@ void TempTick()
 
 	if (KEY_PRESSED(KEY::W))
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_arrVtx[i].vPos.y += DT * 0.5f;
-		}
+		g_ObjectPos.y += DT;
 	}
 
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::S))
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_arrVtx[i].vPos.y -=DT * 0.5f;
-		}
+		g_ObjectPos.y -= DT;
 	}
 
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::A))
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_arrVtx[i].vPos.x -= DT * 0.5f;
-		}
+		g_ObjectPos.x -= DT;
 	}
 
 	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::D))
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_arrVtx[i].vPos.x += DT * 0.5f;
-		}
+		g_ObjectPos.x += DT;
 	}
 
 	//Sysmem -> GPU
 	D3D11_MAPPED_SUBRESOURCE tSub = {};
-	CONTEXT->Map(g_VB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
-	memcpy(tSub.pData, g_arrVtx, sizeof(Vtx) * 4);
+	CONTEXT->Map(g_CB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSub);
 
-	CONTEXT->Unmap(g_VB.Get(), 0);
+	tTransform trans = {};
+	trans.Position = g_ObjectPos;
+	memcpy(tSub.pData, &trans, sizeof(tTransform));
+
+	CONTEXT->Unmap(g_CB.Get(), 0);
+	CONTEXT->VSSetConstantBuffers(0, 1, g_CB.GetAddressOf());
 }
 
 void TempRender()
