@@ -64,6 +64,15 @@
     <Filter Include="07.Asset\Shader">
       <UniqueIdentifier>{061ab1a6-5bd0-484d-a215-36f45033a6e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Device\ConstantBuffer">
+      <UniqueIdentifier>{07caae36-1131-4e4c-83c2-ba0d5202a882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Shader\GraphicShader">
+      <UniqueIdentifier>{0ec499ce-98af-4750-967f-7f07712734d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Asset\Shader\ComputeShader">
+      <UniqueIdentifier>{a4f6e0be-cc94-4a2c-a9fd-c1e94738291b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -121,6 +130,21 @@
     <ClInclude Include="CMesh.h">
       <Filter>07.Asset\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="CConstBuffer.h">
+      <Filter>03. Device\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CShader.h">
+      <Filter>07.Asset\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphicShader.h">
+      <Filter>07.Asset\Shader\GraphicShader</Filter>
+    </ClInclude>
+    <ClInclude Include="CComputeShader.h">
+      <Filter>07.Asset\Shader\ComputeShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -159,6 +183,18 @@
     </ClCompile>
     <ClCompile Include="CMesh.cpp">
       <Filter>07.Asset\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstBuffer.cpp">
+      <Filter>03. Device\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CShader.cpp">
+      <Filter>07.Asset\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicShader.cpp">
+      <Filter>07.Asset\Shader\GraphicShader</Filter>
+    </ClCompile>
+    <ClCompile Include="CComputeShader.cpp">
+      <Filter>07.Asset\Shader\ComputeShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

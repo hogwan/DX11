@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CDevice.h"
+#include "CConstBuffer.h"
 
 CDevice::CDevice()
 {
@@ -8,7 +9,7 @@ CDevice::CDevice()
 
 CDevice::~CDevice()
 {
-
+	Safe_Del_Array<CConstBuffer, static_cast<int>(CB_TYPE::END)>(m_CB);
 }
 
 int CDevice::init(HWND _hWnd, POINT _Resolution)
@@ -64,6 +65,12 @@ int CDevice::init(HWND _hWnd, POINT _Resolution)
 
 	// ViewPort 정보 세팅
 	m_Context->RSSetViewports(1, &viewport);
+
+	//필요한 상수버퍼 생성
+	if (FAILED(CreateConstBuffer()))
+	{
+
+	}
 
 	return S_OK;
 }
@@ -154,6 +161,14 @@ int CDevice::CreateView()
 
 	// RenderTarget 과 DepthStencilTarget 을 출력으로 지정한다.
 	m_Context->OMSetRenderTargets(1, m_RTV.GetAddressOf(), m_DSV.Get());
+
+	return S_OK;
+}
+
+int CDevice::CreateConstBuffer()
+{
+	m_CB[(UINT)CB_TYPE::TRANSFORM] = new CConstBuffer;
+	m_CB[(UINT)CB_TYPE::TRANSFORM]->Create(sizeof(tTransform), CB_TYPE::TRANSFORM);
 
 	return S_OK;
 }

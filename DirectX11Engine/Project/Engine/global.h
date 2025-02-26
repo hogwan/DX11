@@ -31,4 +31,5 @@ using std::wstring;
 #include "define.h"
 #include "struct.h"
 #include "enum.h"
+#include "func.h"
 #include "singleton.h"
