@@ -10,6 +10,11 @@
 #define DEVICE CDevice::GetInst()->GetDevice()
 #define CONTEXT CDevice::GetInst()->GetContext()
 
+#define KEY_CHECK(Key, State)				CKeyMgr::GetInst()->GetKeyState(Key) == State
+#define KEY_PRESSED(Key)					KEY_CHECK(Key, KEY_STATE::PRESSED)
+#define KEY_TAP(Key)						KEY_CHECK(Key, KEY_STATE::TAP)
+#define KEY_RELEASED(Key)					KEY_CHECK(Key, KEY_STATE::RELEASED)
+
 typedef Vector2 Vec2;
 typedef Vector3 Vec3;
 typedef Vector4 Vec4;

@@ -17,5 +17,11 @@ public:
 	void init();
 	void tick();
 
+public:
+	float GetDeltaTime()
+	{
+		return m_fDT;
+	}
+
 };
 

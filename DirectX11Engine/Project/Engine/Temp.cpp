@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Temp.h"
 #include "CDevice.h"
+#include "CTimeMgr.h"
+#include "CKeyMgr.h"
 
 // Graphics Pipeline
 
@@ -198,35 +200,37 @@ void TempRelease()
 
 void TempTick()
 {
-	if (GetAsyncKeyState('W') & 0x8001)
+	float DT = CTimeMgr::GetInst()->GetDeltaTime();
+
+	if (KEY_PRESSED(KEY::W))
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			g_arrVtx[i].vPos.y += 0.0001f;
+			g_arrVtx[i].vPos.y += DT * 0.5f;
 		}
 	}
 
-	if (GetAsyncKeyState('S') & 0x8001)
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::S))
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			g_arrVtx[i].vPos.y -= 0.0001f;
+			g_arrVtx[i].vPos.y -=DT * 0.5f;
 		}
 	}
 
-	if (GetAsyncKeyState('A') & 0x8001)
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::A))
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			g_arrVtx[i].vPos.x -= 0.0001f;
+			g_arrVtx[i].vPos.x -= DT * 0.5f;
 		}
 	}
 
-	if (GetAsyncKeyState('D') & 0x8001)
+	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::D))
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			g_arrVtx[i].vPos.x += 0.0001f;
+			g_arrVtx[i].vPos.x += DT * 0.5f;
 		}
 	}
 

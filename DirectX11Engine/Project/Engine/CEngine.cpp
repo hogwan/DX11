@@ -45,7 +45,7 @@ int CEngine::init(HWND _hWnd, POINT _Resolution)
 	//Manager
 	CTimeMgr::GetInst()->init();
 	//CPathMgr::GetInst()->init();
-	//CKeyMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
 
 	return S_OK;
 }
@@ -56,6 +56,7 @@ void CEngine::progress()
 	// Manager Tick
 	// ============
 	CTimeMgr::GetInst()->tick();
+	CKeyMgr::GetInst()->tick();
 
 	// Object Tick
 	TempTick();
