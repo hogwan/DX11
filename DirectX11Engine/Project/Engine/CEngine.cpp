@@ -36,16 +36,16 @@ int CEngine::init(HWND _hWnd, POINT _Resolution)
 		return E_FAIL;
 	}
 
+	//Manager
+	CTimeMgr::GetInst()->init();
+	CPathMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
+
 	if (FAILED(TempInit()))
 	{
 		MessageBox(m_hMainHwnd, L"Device 초기화 실패", L"Temp Init 초기화 실패", MB_OK);
 		return E_FAIL;
 	}
-
-	//Manager
-	CTimeMgr::GetInst()->init();
-	//CPathMgr::GetInst()->init();
-	CKeyMgr::GetInst()->init();
 
 	return S_OK;
 }
