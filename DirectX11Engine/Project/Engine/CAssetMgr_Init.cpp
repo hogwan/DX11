@@ -69,7 +69,7 @@ void CAssetMgr::CreateDefaultMesh()
 		vecVtx.push_back(v0);
 
 		float Radius = 0.5f;
-		UINT Slice = 10;
+		UINT Slice = 50;
 		float AngleStep = 2 * XM_PI / Slice;
 
 		float Angle = 0.f;

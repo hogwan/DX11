@@ -5,6 +5,7 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CAssetMgr.h"
+#include "CLevelMgr.h"
 
 #include "temp.h"
 
@@ -17,7 +18,7 @@ CEngine::CEngine()
 
 CEngine::~CEngine()
 {
-	TempRelease();
+
 }
 
 int CEngine::init(HWND _hWnd, POINT _Resolution)
@@ -42,12 +43,7 @@ int CEngine::init(HWND _hWnd, POINT _Resolution)
 	CPathMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CAssetMgr::GetInst()->init();
-
-	if (FAILED(TempInit()))
-	{
-		MessageBox(m_hMainHwnd, L"Device 초기화 실패", L"Temp Init 초기화 실패", MB_OK);
-		return E_FAIL;
-	}
+	CLevelMgr::GetInst()->begin();
 
 	return S_OK;
 }
@@ -61,7 +57,7 @@ void CEngine::progress()
 	CKeyMgr::GetInst()->tick();
 
 	// Object Tick
-	TempTick();
+	CLevelMgr::GetInst()->tick();
 
 	// ===========
 	// Rendering
@@ -71,7 +67,7 @@ void CEngine::progress()
 	CDevice::GetInst()->ClearTarget(ClearColor);
 
 	// Object Render
-	TempRender();
+	CLevelMgr::GetInst()->render();
 
 	// Present
 	CDevice::GetInst()->Present();

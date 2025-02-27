@@ -11,36 +11,47 @@
 #include "CGameObject.h"
 #include "CTransform.h"
 #include "CMeshRender.h"
+#include "CPlayerScript.h"
 
-CGameObject* pObject = nullptr;
-
+CGameObject* pObject1 = nullptr;
+CGameObject* pObject2 = nullptr;
 int TempInit()
 {
-	pObject = new CGameObject;
-	pObject->AddComponent(new CTransform);
-	pObject->AddComponent(new CMeshRender);
+	pObject1 = new CGameObject;
+	pObject1->AddComponent(new CTransform);
+	pObject1->AddComponent(new CMeshRender);
+	pObject1->AddComponent(new CPlayerScript);
+	pObject1->Transform()->SetRelativeScale(0.2f, 0.2f, 0.2f);
+	pObject1->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"CircleMesh"));
+	pObject1->MeshRender()->SetShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));
 
-	pObject->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
-	pObject->MeshRender()->SetShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));
+	pObject2 = new CGameObject;
+	pObject2->AddComponent(new CTransform);
+	pObject2->AddComponent(new CMeshRender);
+	pObject2->Transform()->SetRelativeScale(0.5f, 0.5f, 0.5f);
+	pObject2->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
+	pObject2->MeshRender()->SetShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));
 
 	return S_OK;
 }
 
 void TempRelease()
 {
-	delete pObject;
+	delete pObject1;
+	delete pObject2;
 }
 
 void TempTick()
 {
-	float DT = CTimeMgr::GetInst()->GetDeltaTime();
+	pObject1->tick();
+	pObject2->tick();
 
-	pObject->tick();
-
-	pObject->finaltick();
+	pObject1->finaltick();
+	pObject2->finaltick();
 }
 
 void TempRender()
 {
-	pObject->render();
+	pObject1->render();
+	pObject2->render();
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "CEntity.h"
 
-class CGameObject;
+#include "CGameObject.h"
 
 class CComponent :
     public CEntity
@@ -22,6 +22,6 @@ public:
 public:
     CComponent(COMPONENT_TYPE _Type);
     ~CComponent();
-    friend class CGameObject;
+    friend CGameObject;
 };
 

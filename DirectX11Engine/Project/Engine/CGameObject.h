@@ -2,7 +2,7 @@
 #include "CEntity.h"
 
 class CComponent;
-
+class CScript;
 class CRenderComponent;
 
 class CGameObject :
@@ -11,6 +11,8 @@ class CGameObject :
 private:
     CComponent*         m_arrCom[(UINT)COMPONENT_TYPE::END];
     CRenderComponent*   m_RenderCom;
+
+    vector<CScript*>    m_vecScripts;
 
 public:
     void begin();           // 레벨이 시작될 때, 레벨에 합류할 때
