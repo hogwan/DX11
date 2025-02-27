@@ -8,56 +8,39 @@
 #include "CMesh.h"
 #include "CGraphicShader.h"
 #include "CAssetMgr.h"
+#include "CGameObject.h"
+#include "CTransform.h"
+#include "CMeshRender.h"
 
-// 물체의 위치값
-tTransform g_Trans = {};
+CGameObject* pObject = nullptr;
 
 int TempInit()
 {
-	
+	pObject = new CGameObject;
+	pObject->AddComponent(new CTransform);
+	pObject->AddComponent(new CMeshRender);
+
+	pObject->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
+	pObject->MeshRender()->SetShader(CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader"));
 
 	return S_OK;
 }
 
 void TempRelease()
 {
-
+	delete pObject;
 }
 
 void TempTick()
 {
 	float DT = CTimeMgr::GetInst()->GetDeltaTime();
 
-	if (KEY_PRESSED(KEY::W))
-	{
-		g_Trans.Position.y += DT;
-	}
+	pObject->tick();
 
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::S))
-	{
-		g_Trans.Position.y -= DT;
-	}
-
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::A))
-	{
-		g_Trans.Position.x -= DT;
-	}
-
-	if (KEY_STATE::PRESSED == CKeyMgr::GetInst()->GetKeyState(KEY::D))
-	{
-		g_Trans.Position.x += DT;
-	}
-
-	//Sysmem -> GPU
-	CConstBuffer* pCB = CDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
-	pCB->SetData(&g_Trans);
-	pCB->Binding();
+	pObject->finaltick();
 }
 
 void TempRender()
 {
-	Ptr<CGraphicShader> Shader = CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader");
-	Shader->Binding();
-	Ptr<CMesh> g_RectMesh = CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh");
-	g_RectMesh->Render();
+	pObject->render();
 }

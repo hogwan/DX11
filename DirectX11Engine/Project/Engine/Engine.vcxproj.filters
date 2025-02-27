@@ -97,9 +97,6 @@
     <Filter Include="06.Component\Rendering">
       <UniqueIdentifier>{016c376a-fc9c-494c-aaa2-ac12870f37b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06.Component\Rendering\MeshRender">
-      <UniqueIdentifier>{6b40ca96-2072-4857-8866-bd9f8a5fd300}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.Component\Rendering\TileMap">
       <UniqueIdentifier>{80d92ff1-602b-422d-a140-939c5a9c6b1b}</UniqueIdentifier>
     </Filter>
@@ -120,6 +117,9 @@
     </Filter>
     <Filter Include="06.Component\Script">
       <UniqueIdentifier>{8f87bc58-da28-4218-8015-302fcbb705d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Component\Rendering\01. MeshRender">
+      <UniqueIdentifier>{6b40ca96-2072-4857-8866-bd9f8a5fd300}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +211,9 @@
     <ClInclude Include="CTransform.h">
       <Filter>06.Component\01. Transform</Filter>
     </ClInclude>
+    <ClInclude Include="CMeshRender.h">
+      <Filter>06.Component\Rendering\01. MeshRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -273,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="CTransform.cpp">
       <Filter>06.Component\01. Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeshRender.cpp">
+      <Filter>06.Component\Rendering\01. MeshRender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -169,6 +169,7 @@ call Copy.bat</Command>
     <ClInclude Include="CGraphicShader.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMesh.h" />
+    <ClInclude Include="CMeshRender.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="CRenderComponent.h" />
     <ClInclude Include="CShader.h" />
@@ -201,6 +202,7 @@ call Copy.bat</Command>
     <ClCompile Include="CGraphicShader.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMesh.cpp" />
+    <ClCompile Include="CMeshRender.cpp" />
     <ClCompile Include="CRenderComponent.cpp" />
     <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
