@@ -17,7 +17,7 @@ CConstBuffer::~CConstBuffer()
 int CConstBuffer::Create(size_t _bufferSize, CB_TYPE _Type)
 {
 	m_Type = _Type;
-	m_Desc.ByteWidth = _bufferSize;
+	m_Desc.ByteWidth = (UINT)_bufferSize;
 	m_Desc.MiscFlags = 0;
 
 	m_Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;

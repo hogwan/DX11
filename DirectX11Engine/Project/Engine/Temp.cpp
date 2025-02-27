@@ -7,14 +7,11 @@
 #include "CConstBuffer.h"
 #include "CMesh.h"
 #include "CGraphicShader.h"
+#include "CAssetMgr.h"
 
 // Mesh
 Ptr<CMesh> g_RectMesh = nullptr;
 Ptr<CMesh> g_CircleMesh = nullptr;
-
-// System Mem 정점 정보
-Vtx g_arrVtx[4] = {};
-UINT g_arrIdx[6] = {0,2,3,0,1,2};
 
 // 물체의 위치값
 tTransform g_Trans = {};
@@ -25,60 +22,6 @@ Ptr<CGraphicShader> g_Shader = nullptr;
 
 int TempInit()
 {
-	// RectMesh
-	// 0 - 1 
-	// |   |
-	// 3 - 2
-	g_arrVtx[0].vPos = Vec3(-0.5f, 0.5f, 0.f);
-	g_arrVtx[0].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-
-	g_arrVtx[1].vPos = Vec3(0.5f, 0.5f, 0.f);
-	g_arrVtx[1].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
-
-	g_arrVtx[2].vPos = Vec3(0.5f, -0.5f, 0.f);
-	g_arrVtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
-
-	g_arrVtx[3].vPos = Vec3(-0.5f, -0.5f, 0.f);
-	g_arrVtx[3].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
-
-	g_RectMesh = new CMesh();
-	g_RectMesh->Create(g_arrVtx, 4, g_arrIdx, 6);
-
-	// CircleMesh
-	vector<Vtx> vecVtx;
-	vector<UINT> vecIdx;
-	Vtx v0;
-	
-	// 원점을 벡터에 넣는다
-	v0.vPos = Vec3(0.f, 0.f, 0.f);
-	v0.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
-	vecVtx.push_back(v0);
-
-	float Radius = 0.5f;
-	UINT Slice = 10;
-	float AngleStep = 2 * XM_PI / Slice;
-
-	float Angle = 0.f;
-	for (UINT i = 0; i <= Slice; i++)
-	{
-		Vtx v;
-		v.vPos = Vec3(cosf(Angle) * Radius, sinf(Angle) * Radius, 0.f);
-		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
-
-		vecVtx.push_back(v);
-		Angle += AngleStep;
-	}
-
-	for (UINT i = 0; i < Slice; ++i)
-	{
-		vecIdx.push_back(0);
-		vecIdx.push_back(i + 2);
-		vecIdx.push_back(i + 1);
-	}
-
-	g_CircleMesh = new CMesh;
-	g_CircleMesh->Create(vecVtx.data(), vecVtx.size(), vecIdx.data(), vecIdx.size());
-
 	//CreateShader
 	wstring strPath = CPathMgr::GetInst()->GetContentPath();
 	strPath += L"shader\\std2d.fx";
@@ -128,5 +71,6 @@ void TempTick()
 void TempRender()
 {
 	g_Shader->Binding();
-	g_CircleMesh->Render();
+	g_RectMesh = CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh");
+	g_RectMesh->Render();
 }
