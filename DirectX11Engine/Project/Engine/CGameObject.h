@@ -3,5 +3,9 @@
 class CGameObject :
     public CEntity
 {
+private:
+
+public:
+
 };
 

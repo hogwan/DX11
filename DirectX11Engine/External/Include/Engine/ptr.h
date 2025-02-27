@@ -57,7 +57,8 @@ public:
 	Ptr(const Ptr<T>& _Other)
 		:m_Asset(_Other.m_Asset)
 	{
-
+		if (nullptr != m_Asset)
+			m_Asset->AddRef();
 	}
 
 	~Ptr()

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CAssetMgr.h"
+#include "CPathMgr.h"
 
 void CAssetMgr::init()
 {
@@ -51,7 +52,7 @@ void CAssetMgr::CreateDefaultMesh()
 
 		RectMesh = new CMesh();
 		RectMesh->Create(vecVtx.data(), (UINT)vecIdx.size(), vecIdx.data(), (UINT)vecIdx.size());
-		AddAsset<CMesh>(L"RectMesh", RectMesh.Get());
+		AddAsset<CMesh>(L"RectMesh", RectMesh);
 	}
 	
 	{
@@ -91,7 +92,7 @@ void CAssetMgr::CreateDefaultMesh()
 
 		CircleMesh = new CMesh;
 		CircleMesh->Create(vecVtx.data(), (UINT)vecIdx.size(), vecIdx.data(), (UINT)vecIdx.size());
-		AddAsset<CMesh>(L"CircleMesh", CircleMesh.Get());
+		AddAsset<CMesh>(L"CircleMesh", CircleMesh);
 	}
 	
 }
@@ -106,6 +107,16 @@ void CAssetMgr::CreateDefaultMaterial()
 
 void CAssetMgr::CreateDefaultGraphicShader()
 {
+	//CreateShader
+	{
+		wstring strPath = CPathMgr::GetInst()->GetContentPath();
+
+		Ptr<CGraphicShader> Shader = new CGraphicShader;
+		Shader->CreateVertexShader(strPath + L"shader\\std2d.fx", "VS_Std2D");
+		Shader->CreatePixelShader(strPath + L"shader\\std2d.fx", "PS_Std2D");
+
+		AddAsset<CGraphicShader>(L"Std2DShader", Shader);
+	}
 }
 
 void CAssetMgr::CreateDefaultComputeShader()

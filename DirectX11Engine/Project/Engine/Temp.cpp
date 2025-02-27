@@ -9,26 +9,12 @@
 #include "CGraphicShader.h"
 #include "CAssetMgr.h"
 
-// Mesh
-Ptr<CMesh> g_RectMesh = nullptr;
-Ptr<CMesh> g_CircleMesh = nullptr;
-
 // 물체의 위치값
 tTransform g_Trans = {};
 
-// HLSL
-Ptr<CGraphicShader> g_Shader = nullptr;
-
-
 int TempInit()
 {
-	//CreateShader
-	wstring strPath = CPathMgr::GetInst()->GetContentPath();
-	strPath += L"shader\\std2d.fx";
-
-	g_Shader = new CGraphicShader;
-	g_Shader->CreateVertexShader(strPath, "VS_Std2D");
-	g_Shader->CreatePixelShader(strPath, "PS_Std2D");
+	
 
 	return S_OK;
 }
@@ -70,7 +56,8 @@ void TempTick()
 
 void TempRender()
 {
-	g_Shader->Binding();
-	g_RectMesh = CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh");
+	Ptr<CGraphicShader> Shader = CAssetMgr::GetInst()->FindAsset<CGraphicShader>(L"Std2DShader");
+	Shader->Binding();
+	Ptr<CMesh> g_RectMesh = CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh");
 	g_RectMesh->Render();
 }
