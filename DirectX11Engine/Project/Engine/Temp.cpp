@@ -9,8 +9,8 @@
 #include "CGraphicShader.h"
 
 // Mesh
-CMesh* g_RectMesh = nullptr;
-CMesh* g_CircleMesh = nullptr;
+Ptr<CMesh> g_RectMesh = nullptr;
+Ptr<CMesh> g_CircleMesh = nullptr;
 
 // System Mem 정점 정보
 Vtx g_arrVtx[4] = {};
@@ -20,7 +20,7 @@ UINT g_arrIdx[6] = {0,2,3,0,1,2};
 tTransform g_Trans = {};
 
 // HLSL
-CGraphicShader* g_Shader = nullptr;
+Ptr<CGraphicShader> g_Shader = nullptr;
 
 
 int TempInit()
@@ -92,20 +92,7 @@ int TempInit()
 
 void TempRelease()
 {
-	if (nullptr != g_RectMesh)
-	{
-		delete g_RectMesh;
-	}
 
-	if (nullptr != g_CircleMesh)
-	{
-		delete g_CircleMesh;
-	}
-
-	if (nullptr != g_Shader)
-	{
-		delete g_Shader;
-	}
 }
 
 void TempTick()

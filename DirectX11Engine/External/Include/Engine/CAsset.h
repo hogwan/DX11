@@ -16,7 +16,14 @@ public:
 
 private:
     void AddRef() { m_RefCount++; }
-    void Release() { m_RefCount--; }
+    void Release() 
+    { 
+        m_RefCount--; 
+        if (m_RefCount <= 0)
+        {
+            delete this;
+        }
+    }
 
 public:
     CAsset(ASSET_TYPE _Type);

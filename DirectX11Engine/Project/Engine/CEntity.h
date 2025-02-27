@@ -19,6 +19,6 @@ public:
 public:
 	CEntity();
 	CEntity(const CEntity& _Origin);
-	~CEntity();
+	virtual ~CEntity();
 };
 
