@@ -170,8 +170,10 @@ call Copy.bat</Command>
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMesh.h" />
     <ClInclude Include="components.h" />
+    <ClInclude Include="CRenderComponent.h" />
     <ClInclude Include="CShader.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="CTransform.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
@@ -199,8 +201,10 @@ call Copy.bat</Command>
     <ClCompile Include="CGraphicShader.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMesh.cpp" />
+    <ClCompile Include="CRenderComponent.cpp" />
     <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="CTransform.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="pch.cpp">
