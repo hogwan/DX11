@@ -12,11 +12,6 @@
 CMesh* g_RectMesh = nullptr;
 CMesh* g_CircleMesh = nullptr;
 
-
-
-// 정점 하나를 구성하는 Layout 정보
-ComPtr<ID3D11InputLayout> g_Layout;
-
 // System Mem 정점 정보
 Vtx g_arrVtx[4] = {};
 UINT g_arrIdx[6] = {0,2,3,0,1,2};
@@ -25,7 +20,7 @@ UINT g_arrIdx[6] = {0,2,3,0,1,2};
 tTransform g_Trans = {};
 
 // HLSL
-CGraphicShader* m_Shader = nullptr;
+CGraphicShader* g_Shader = nullptr;
 
 
 int TempInit()
@@ -88,41 +83,9 @@ int TempInit()
 	wstring strPath = CPathMgr::GetInst()->GetContentPath();
 	strPath += L"shader\\std2d.fx";
 
-	m_Shader = new CGraphicShader;
-	m_Shader->CreateVertexShader(strPath, "VS_Std2D");
-	m_Shader->CreatePixelShader(strPath, "PS_Std2D");
-
-	// 정점 레이아웃 정보
-	D3D11_INPUT_ELEMENT_DESC LayoutDesc[2] = {};
-	LayoutDesc[0].AlignedByteOffset = 0;
-	LayoutDesc[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-	LayoutDesc[0].InputSlot = 0;
-	LayoutDesc[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	LayoutDesc[0].InstanceDataStepRate = 0;
-	LayoutDesc[0].SemanticIndex = 0;
-	LayoutDesc[0].SemanticName = "POSITION";
-
-	LayoutDesc[1].AlignedByteOffset = 12;
-	LayoutDesc[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	LayoutDesc[1].InputSlot = 0;
-	LayoutDesc[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	LayoutDesc[1].InstanceDataStepRate = 0;
-	LayoutDesc[1].SemanticIndex = 0;
-	LayoutDesc[1].SemanticName = "COLOR";
-
-	if (FAILED(DEVICE->CreateInputLayout(LayoutDesc, 2
-		, g_VSBlob->GetBufferPointer(), g_VSBlob->GetBufferSize(), g_Layout.GetAddressOf())))
-	{
-		return E_FAIL;
-	}
-
-	//Pixel Shader
-	if (FAILED(DEVICE->CreatePixelShader(g_PSBlob->GetBufferPointer()
-		, g_PSBlob->GetBufferSize()
-		, nullptr, g_PS.GetAddressOf())))
-	{
-		return E_FAIL;
-	}
+	g_Shader = new CGraphicShader;
+	g_Shader->CreateVertexShader(strPath, "VS_Std2D");
+	g_Shader->CreatePixelShader(strPath, "PS_Std2D");
 
 	return S_OK;
 }
@@ -137,6 +100,11 @@ void TempRelease()
 	if (nullptr != g_CircleMesh)
 	{
 		delete g_CircleMesh;
+	}
+
+	if (nullptr != g_Shader)
+	{
+		delete g_Shader;
 	}
 }
 
@@ -172,11 +140,6 @@ void TempTick()
 
 void TempRender()
 {
-	
-	CONTEXT->IASetInputLayout(g_Layout.Get());
-	CONTEXT->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	m_Shader->Binding();
-
+	g_Shader->Binding();
 	g_CircleMesh->Render();
 }

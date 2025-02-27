@@ -3,7 +3,7 @@
 class CShader :
     public CAsset
 {
-private:
+protected:
     ComPtr<ID3DBlob>		m_ErrBlob;
 
 public:

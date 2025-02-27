@@ -25,8 +25,8 @@ CMesh::~CMesh()
 
 int CMesh::Create(Vtx* _VtxSysMem, size_t _VtxCount, UINT* _IdxSysMem, size_t _IdxCount)
 {
-	m_VtxCount = _VtxCount;
-	m_IdxCount = _IdxCount;
+	m_VtxCount = (UINT)_VtxCount;
+	m_IdxCount = (UINT)_IdxCount;
 
 	// 정점 버퍼 생성
 	m_VBDesc.ByteWidth = sizeof(Vtx) * m_VtxCount;
