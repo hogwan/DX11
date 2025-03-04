@@ -12,7 +12,10 @@ private:
     CLevel* m_CurLevel;
 
 public:
-    void begin();
+    CLevel* GetCurrentLevel() { return m_CurLevel; }
+
+public:
+    void init();
     void tick();
     void render();
 

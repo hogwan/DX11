@@ -21,6 +21,10 @@ private:
 public:
     int Create(Vtx* _VtxSysMem, size_t _VtxCount, UINT* _IdxSysMem, size_t _IdxCount);
     void Render();
+
+private:
+    virtual int Load(const wstring& _FilePath) override { return S_OK; }
+    virtual int Save(const wstring& _FilePath) override { return S_OK; }
     
 public:
     CMesh();

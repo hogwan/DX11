@@ -1,6 +1,7 @@
 #pragma once
 #include "singleton.h"
 #include "assets.h"
+#include "CPathMgr.h"
 
 class CAssetMgr :
     public CSingleton<CAssetMgr>
@@ -19,6 +20,9 @@ public:
     void CreateDefaultComputeShader();
 
 public:
+    template<typename T>
+    Ptr<T> Load(const wstring& _strKey, const wstring& _strRelativePath);
+
     template<typename T>
     Ptr<T> FindAsset(const wstring& _strKey);
 
@@ -43,6 +47,36 @@ ASSET_TYPE GetAssetType()
     {
         return ASSET_TYPE::COMPUTE_SHADER;
     }
+
+    if constexpr (std::is_same_v<T, CTexture>)
+    {
+        return ASSET_TYPE::COMPUTE_SHADER;
+    }
+}
+
+
+template<typename T>
+inline Ptr<T> CAssetMgr::Load(const wstring& _strKey, const wstring& _strRelativePath)
+{
+    Ptr<CAsset> pAsset = FindAsset<T>(_strKey).Get();
+    if (nullptr != pAsset.Get())
+    {
+        return (T*)pAsset.Get();
+    }
+
+    wstring strFullPath = CPathMgr::GetInst()->GetContentPath();
+    strFullPath += _strRelativePath;
+
+    pAsset = new T;
+    if (FAILED(pAsset->Load(strFullPath)))
+    {
+        MessageBox(nullptr, strFullPath.c_str(), L"에셋 로딩 실패", MB_OK);
+        return nullptr;
+    }
+
+    AddAsset<T>(_strKey, (T*)pAsset.Get());
+
+    return (T*)pAsset.Get();
 }
 
 

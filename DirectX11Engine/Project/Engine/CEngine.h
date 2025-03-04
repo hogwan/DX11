@@ -6,12 +6,12 @@ class CEngine
 	SINGLE(CEngine)
 private:
 	HWND	m_hMainHwnd;
-	POINT	m_Resolution;
+	Vec2	m_Resolution;
 
 public:
 	HWND GetMainWnd() { return m_hMainHwnd; }
 
-	int init(HWND _hWnd, POINT _Resolution);
+	int init(HWND _hWnd, Vec2 _Resolution);
 	void progress();
 
 

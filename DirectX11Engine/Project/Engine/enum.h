@@ -43,3 +43,14 @@ enum class CB_TYPE
 	GLOBAL,
 	END,
 };
+
+// Rasterizer State
+enum class RS_TYPE
+{
+	CULL_BACK,
+	CULL_FRONT,
+	CULL_NONE,
+	WIRE_FRAME,
+
+	END,
+};

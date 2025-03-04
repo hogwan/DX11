@@ -16,16 +16,26 @@ CTransform::~CTransform()
 
 void CTransform::finaltick()
 {
+	m_matWorld = XMMatrixIdentity();
+
+	Matrix matScale = XMMatrixScaling(m_RelativeScale.x, m_RelativeScale.y, m_RelativeScale.z);
+
+	Matrix matRot = XMMatrixRotationX(m_RelativeRotation.x);
+	matRot *= XMMatrixRotationY(m_RelativeRotation.y);
+	matRot *= XMMatrixRotationZ(m_RelativeRotation.z);
+
+	Matrix matTranslation = XMMatrixTranslation(m_RelativePos.x, m_RelativePos.y, m_RelativePos.z);
+
+	m_matWorld = matScale * matRot * matTranslation;
 }
 
 void CTransform::Binding()
 {
 	//Sysmem -> GPU
 	CConstBuffer* pCB = CDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
-	tTransform trans = {};
-	trans.Position = m_RelativePos;
-	trans.Scale = m_RelativeScale;
 
-	pCB->SetData(&trans);
+	g_Trans.matWorld = m_matWorld;
+
+	pCB->SetData(&g_Trans);
 	pCB->Binding();
 }

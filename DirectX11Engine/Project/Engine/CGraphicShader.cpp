@@ -5,6 +5,7 @@
 CGraphicShader::CGraphicShader()
 	: CShader(ASSET_TYPE::GRAPHICS_SHADER)
 	, m_Topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+	, m_RSType(RS_TYPE::CULL_BACK)
 {
 }
 
@@ -39,7 +40,7 @@ int CGraphicShader::CreateVertexShader(const wstring& _strFilePath, const string
 	}
 
 	// 정점 레이아웃 정보
-	D3D11_INPUT_ELEMENT_DESC LayoutDesc[2] = {};
+	D3D11_INPUT_ELEMENT_DESC LayoutDesc[3] = {};
 	LayoutDesc[0].AlignedByteOffset = 0;
 	LayoutDesc[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 	LayoutDesc[0].InputSlot = 0;
@@ -56,7 +57,15 @@ int CGraphicShader::CreateVertexShader(const wstring& _strFilePath, const string
 	LayoutDesc[1].SemanticIndex = 0;
 	LayoutDesc[1].SemanticName = "COLOR";
 
-	if (FAILED(DEVICE->CreateInputLayout(LayoutDesc, 2
+	LayoutDesc[2].AlignedByteOffset = 28;
+	LayoutDesc[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+	LayoutDesc[2].InputSlot = 0;
+	LayoutDesc[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+	LayoutDesc[2].InstanceDataStepRate = 0;
+	LayoutDesc[2].SemanticIndex = 0;
+	LayoutDesc[2].SemanticName = "TEXCOORD";
+
+	if (FAILED(DEVICE->CreateInputLayout(LayoutDesc, 3
 		, m_VSBlob->GetBufferPointer(), m_VSBlob->GetBufferSize(), m_Layout.GetAddressOf())))
 	{
 		return E_FAIL;
@@ -100,5 +109,8 @@ void CGraphicShader::Binding()
 	CONTEXT->IASetPrimitiveTopology(m_Topology);
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
+
+	CONTEXT->RSSetState(CDevice::GetInst()->GetRS(m_RSType).Get());
+
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
 }

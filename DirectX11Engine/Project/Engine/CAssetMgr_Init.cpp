@@ -28,18 +28,22 @@ void CAssetMgr::CreateDefaultMesh()
 		// 3 - 2
 		v.vPos = Vec3(-0.5f, 0.5f, 0.f);
 		v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+		v.vUV = Vec2(0.f, 0.f);
 		vecVtx.push_back(v);
 
 		v.vPos = Vec3(0.5f, 0.5f, 0.f);
 		v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+		v.vUV = Vec2(1.f, 0.f);
 		vecVtx.push_back(v);
 
 		v.vPos = Vec3(0.5f, -0.5f, 0.f);
 		v.vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+		v.vUV = Vec2(1.f, 1.f);
 		vecVtx.push_back(v);
 
 		v.vPos = Vec3(-0.5f, -0.5f, 0.f);
 		v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+		v.vUV = Vec2(0.f, 1.f);
 		vecVtx.push_back(v);
 
 		vecIdx.push_back(0);
@@ -69,7 +73,7 @@ void CAssetMgr::CreateDefaultMesh()
 		vecVtx.push_back(v0);
 
 		float Radius = 0.5f;
-		UINT Slice = 50;
+		UINT Slice = 40;
 		float AngleStep = 2 * XM_PI / Slice;
 
 		float Angle = 0.f;
@@ -99,6 +103,7 @@ void CAssetMgr::CreateDefaultMesh()
 
 void CAssetMgr::CreateDefaultTexture()
 {
+	Load<CTexture>(L"texture\\Character.png", L"texture\\Character.png");
 }
 
 void CAssetMgr::CreateDefaultMaterial()
@@ -114,6 +119,7 @@ void CAssetMgr::CreateDefaultGraphicShader()
 		Ptr<CGraphicShader> Shader = new CGraphicShader;
 		Shader->CreateVertexShader(strPath + L"shader\\std2d.fx", "VS_Std2D");
 		Shader->CreatePixelShader(strPath + L"shader\\std2d.fx", "PS_Std2D");
+		Shader->SetRSType(RS_TYPE::CULL_NONE);
 
 		AddAsset<CGraphicShader>(L"Std2DShader", Shader);
 	}

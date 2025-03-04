@@ -12,7 +12,9 @@ private:
 
 public:
     void AddObject(UINT _LayerIdx, CGameObject* _Object);
+    CLayer* GetLayer(int _iLayerIdx) { return m_arrLayer[_iLayerIdx]; }
 
+public:
     void begin();
     void tick();
     void finaltick();
