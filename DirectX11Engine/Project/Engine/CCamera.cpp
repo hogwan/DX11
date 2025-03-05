@@ -25,13 +25,24 @@ void CCamera::finaltick()
 {
 	// View 행렬 계산
 	Vec3 vCamWorldPos = GetOwner()->Transform()->GetRelativePos();
-	m_matView = XMMatrixTranslation(-vCamWorldPos.x, -vCamWorldPos.y, -vCamWorldPos.z);
+	Matrix matViewTrans = XMMatrixTranslation(-vCamWorldPos.x, -vCamWorldPos.y, -vCamWorldPos.z);
+
+	// 카메라가 바라보는 방향을 z 축으로 쳐다보도록 하는 회전량을 회전행렬로 구해야 한다.
+	// 카메라의 우, 상, 전 벡터
+	Vec3 vR = Transform()->GetRelativeDir(DIR_TYPE::RIGHT);
+	Vec3 vU = Transform()->GetRelativeDir(DIR_TYPE::UP);
+	Vec3 vF = Transform()->GetRelativeDir(DIR_TYPE::FRONT);
+
+	Matrix matViewRot = XMMatrixIdentity();
+	matViewRot._11 = vR.x; matViewRot._12 = vU.x; matViewRot._13 = vF.x;
+	matViewRot._21 = vR.y; matViewRot._22 = vU.y; matViewRot._23 = vF.y;
+	matViewRot._31 = vR.z; matViewRot._32 = vU.z; matViewRot._33 = vF.z;
+
+	m_matView = matViewTrans * matViewRot;
 
 	// Proj 행렬 계산
 	Vec2 vRenderResolution = CDevice::GetInst()->GetRenderResolution();
-
 	float AspectRatio = vRenderResolution.x / vRenderResolution.y;
-	
 	m_matProj = XMMatrixPerspectiveFovLH((XM_PI / 3.f), AspectRatio, 1.f, m_Far);
 }
 

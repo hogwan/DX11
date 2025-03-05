@@ -3,6 +3,9 @@
 
 #include "CGameObject.h"
 
+class CMeshRender;
+class CCamera;
+
 class CComponent :
     public CEntity
 {
@@ -18,6 +21,10 @@ public:
 public:
     COMPONENT_TYPE GetComponentType() { return m_Type; }
     CGameObject* GetOwner() { return m_Owner; }
+
+    CTransform* Transform() { return m_Owner->Transform(); }
+    CMeshRender* MeshRender() { return m_Owner->MeshRender(); }
+    CCamera* Camera() { return m_Owner->Camera(); }
 
 public:
     CComponent(COMPONENT_TYPE _Type);

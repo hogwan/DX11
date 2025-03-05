@@ -27,6 +27,18 @@ void CTransform::finaltick()
 	Matrix matTranslation = XMMatrixTranslation(m_RelativePos.x, m_RelativePos.y, m_RelativePos.z);
 
 	m_matWorld = matScale * matRot * matTranslation;
+
+	// 오브젝트의 방향 정보 계산
+	m_RelativeDir[(UINT)DIR_TYPE::RIGHT]	= XAxis;
+	m_RelativeDir[(UINT)DIR_TYPE::UP]		= YAxis;
+	m_RelativeDir[(UINT)DIR_TYPE::FRONT]	= ZAxis;
+
+	for (int i = 0; i < 3; i++)
+	{
+		m_RelativeDir[i] = XMVector3TransformNormal(m_RelativeDir[i], matRot);
+		m_RelativeDir[i].Normalize();
+	}
+
 }
 
 void CTransform::Binding()

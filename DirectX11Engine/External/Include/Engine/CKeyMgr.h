@@ -6,6 +6,7 @@ enum class KEY
 	Q,W,E,R,
 	A,S,D,F,
 	Z,X,C,V,
+	T,Y,G,H,
 
 	_0,
 	_1,
@@ -22,6 +23,9 @@ enum class KEY
 	RIGHT,
 	UP,
 	DOWN,
+
+	LBTN,
+	RBTN,
 
 	ENTER,
 	ESC,
@@ -55,6 +59,9 @@ class CKeyMgr
 
 private:
 	vector<tKeyInfo>	m_vecKey;
+	Vec2				m_CurMousePos;
+	Vec2				m_PrevMousePos;
+	Vec2				m_DragDir;
 
 public:
 	void init();
@@ -62,5 +69,9 @@ public:
 
 public:
 	KEY_STATE GetKeyState(KEY _Key) { return m_vecKey[(UINT)_Key].State; }
+
+	Vec2 GetMousePos() { return m_CurMousePos; };
+	Vec2 GetPrevMousePos() { return m_PrevMousePos; };
+	Vec2 GetMouseDrag() { return m_DragDir; }
 };
 

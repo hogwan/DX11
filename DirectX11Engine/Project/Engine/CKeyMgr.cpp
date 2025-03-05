@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CKeyMgr.h"
+#include "CEngine.h"
 
 UINT g_KeyValue[(UINT)KEY::KEY_END] =
 {
@@ -15,6 +16,10 @@ UINT g_KeyValue[(UINT)KEY::KEY_END] =
 	'X',
 	'C',
 	'V',
+	'T',
+	'Y',
+	'G',
+	'H',
 
 	'0',
 	'1',
@@ -31,6 +36,9 @@ UINT g_KeyValue[(UINT)KEY::KEY_END] =
 	VK_RIGHT,
 	VK_UP,
 	VK_DOWN,
+
+	VK_LBUTTON,
+	VK_RBUTTON,
 
 	VK_RETURN,
 	VK_ESCAPE,
@@ -99,4 +107,15 @@ void CKeyMgr::tick()
 			m_vecKey[i].PrevPressed = false;
 		}
 	}
+
+	// 마우스 좌표 갱신
+	m_PrevMousePos = m_CurMousePos;
+	
+	POINT ptMouse = {};
+	GetCursorPos(&ptMouse);
+	ScreenToClient(CEngine::GetInst()->GetMainWnd(), &ptMouse);
+	m_CurMousePos = Vec2((float)ptMouse.x, (float)ptMouse.y);
+	m_DragDir = m_CurMousePos - m_PrevMousePos;
+	m_DragDir.y *= -1.f;
+	m_DragDir.Normalize();
 }
