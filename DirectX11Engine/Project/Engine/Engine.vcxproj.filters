@@ -34,38 +34,8 @@
     <Filter Include="04.Manager\03. KeyMgr">
       <UniqueIdentifier>{9727f968-408d-466f-a505-5d1e1248193f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Asset">
-      <UniqueIdentifier>{1fab62ce-d530-49e6-ae3f-c405349b8c21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Mesh">
-      <UniqueIdentifier>{46b4efb1-42b7-45c4-b152-cbb826716575}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Sound">
-      <UniqueIdentifier>{7f12e8f1-2637-48fc-b5d8-7f471be122ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Texture">
-      <UniqueIdentifier>{da31fed9-6489-4bea-96f4-56c8b6f91a1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Material">
-      <UniqueIdentifier>{6a12cc5f-0a0a-48a3-9ebc-31903e3afdb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\MeshData">
-      <UniqueIdentifier>{627cf5ea-cef1-4f70-90eb-0b6d05af4b97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Prefab">
-      <UniqueIdentifier>{662de118-58ee-4f39-a3fb-7c4f8724ed96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Shader">
-      <UniqueIdentifier>{061ab1a6-5bd0-484d-a215-36f45033a6e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03. Device\ConstantBuffer">
       <UniqueIdentifier>{07caae36-1131-4e4c-83c2-ba0d5202a882}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Shader\GraphicShader">
-      <UniqueIdentifier>{0ec499ce-98af-4750-967f-7f07712734d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Asset\Shader\ComputeShader">
-      <UniqueIdentifier>{a4f6e0be-cc94-4a2c-a9fd-c1e94738291b}</UniqueIdentifier>
     </Filter>
     <Filter Include="04.Manager\04. AssetMgr">
       <UniqueIdentifier>{775d87ee-f124-479e-afba-64fa86c96ce9}</UniqueIdentifier>
@@ -133,6 +103,36 @@
     <Filter Include="04.Manager\06. RenderMgr">
       <UniqueIdentifier>{8c213494-7919-4342-8a0e-a5d65f12b0d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08.Asset">
+      <UniqueIdentifier>{1fab62ce-d530-49e6-ae3f-c405349b8c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Mesh">
+      <UniqueIdentifier>{46b4efb1-42b7-45c4-b152-cbb826716575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Sound">
+      <UniqueIdentifier>{7f12e8f1-2637-48fc-b5d8-7f471be122ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Texture">
+      <UniqueIdentifier>{da31fed9-6489-4bea-96f4-56c8b6f91a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Material">
+      <UniqueIdentifier>{6a12cc5f-0a0a-48a3-9ebc-31903e3afdb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\MeshData">
+      <UniqueIdentifier>{627cf5ea-cef1-4f70-90eb-0b6d05af4b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Prefab">
+      <UniqueIdentifier>{662de118-58ee-4f39-a3fb-7c4f8724ed96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Shader">
+      <UniqueIdentifier>{061ab1a6-5bd0-484d-a215-36f45033a6e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Shader\GraphicShader">
+      <UniqueIdentifier>{0ec499ce-98af-4750-967f-7f07712734d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Asset\Shader\ComputeShader">
+      <UniqueIdentifier>{a4f6e0be-cc94-4a2c-a9fd-c1e94738291b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -178,7 +178,7 @@
       <Filter>06.GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CAsset.h">
-      <Filter>07.Asset</Filter>
+      <Filter>08.Asset</Filter>
     </ClInclude>
     <ClInclude Include="CComponent.h">
       <Filter>07.Component</Filter>
@@ -187,7 +187,7 @@
       <Filter>01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CMesh.h">
-      <Filter>07.Asset\Mesh</Filter>
+      <Filter>08.Asset\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="CConstBuffer.h">
       <Filter>03. Device\ConstantBuffer</Filter>
@@ -196,19 +196,19 @@
       <Filter>01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CShader.h">
-      <Filter>07.Asset\Shader</Filter>
+      <Filter>08.Asset\Shader</Filter>
     </ClInclude>
     <ClInclude Include="CGraphicShader.h">
-      <Filter>07.Asset\Shader\GraphicShader</Filter>
+      <Filter>08.Asset\Shader\GraphicShader</Filter>
     </ClInclude>
     <ClInclude Include="CComputeShader.h">
-      <Filter>07.Asset\Shader\ComputeShader</Filter>
+      <Filter>08.Asset\Shader\ComputeShader</Filter>
     </ClInclude>
     <ClInclude Include="CAssetMgr.h">
       <Filter>04.Manager\04. AssetMgr</Filter>
     </ClInclude>
     <ClInclude Include="ptr.h">
-      <Filter>07.Asset</Filter>
+      <Filter>08.Asset</Filter>
     </ClInclude>
     <ClInclude Include="components.h">
       <Filter>01. Header</Filter>
@@ -241,7 +241,7 @@
       <Filter>04.Manager\05. LevelMgr</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
-      <Filter>07.Asset\Texture</Filter>
+      <Filter>08.Asset\Texture</Filter>
     </ClInclude>
     <ClInclude Include="CCamera.h">
       <Filter>07.Component\02. Camera</Filter>
@@ -251,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="CCameraMoveScript.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CMaterial.h">
+      <Filter>08.Asset\Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -282,25 +285,25 @@
       <Filter>06.GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CAsset.cpp">
-      <Filter>07.Asset</Filter>
+      <Filter>08.Asset</Filter>
     </ClCompile>
     <ClCompile Include="CComponent.cpp">
       <Filter>07.Component</Filter>
     </ClCompile>
     <ClCompile Include="CMesh.cpp">
-      <Filter>07.Asset\Mesh</Filter>
+      <Filter>08.Asset\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="CConstBuffer.cpp">
       <Filter>03. Device\ConstantBuffer</Filter>
     </ClCompile>
     <ClCompile Include="CShader.cpp">
-      <Filter>07.Asset\Shader</Filter>
+      <Filter>08.Asset\Shader</Filter>
     </ClCompile>
     <ClCompile Include="CGraphicShader.cpp">
-      <Filter>07.Asset\Shader\GraphicShader</Filter>
+      <Filter>08.Asset\Shader\GraphicShader</Filter>
     </ClCompile>
     <ClCompile Include="CComputeShader.cpp">
-      <Filter>07.Asset\Shader\ComputeShader</Filter>
+      <Filter>08.Asset\Shader\ComputeShader</Filter>
     </ClCompile>
     <ClCompile Include="CAssetMgr.cpp">
       <Filter>04.Manager\04. AssetMgr</Filter>
@@ -333,7 +336,7 @@
       <Filter>04.Manager\05. LevelMgr</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
-      <Filter>07.Asset\Texture</Filter>
+      <Filter>08.Asset\Texture</Filter>
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
       <Filter>07.Component\02. Camera</Filter>
@@ -347,6 +350,9 @@
     <ClCompile Include="CCameraMoveScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="CMaterial.cpp">
+      <Filter>08.Asset\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -355,6 +361,9 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="std2d.fx">
+      <Filter>HLSL\2D</Filter>
+    </FxCompile>
+    <FxCompile Include="value.fx">
       <Filter>HLSL\2D</Filter>
     </FxCompile>
   </ItemGroup>

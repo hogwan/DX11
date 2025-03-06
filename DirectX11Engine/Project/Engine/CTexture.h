@@ -10,6 +10,7 @@ private:
 
 public:
     void Binding(int _RegisterNum);
+    static void Clear(int _RegisterNum);
 
 public:
     virtual int Load(const wstring& _FilePath) override;

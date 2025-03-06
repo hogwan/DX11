@@ -50,7 +50,12 @@ ASSET_TYPE GetAssetType()
 
     if constexpr (std::is_same_v<T, CTexture>)
     {
-        return ASSET_TYPE::COMPUTE_SHADER;
+        return ASSET_TYPE::TEXTURE;
+    }
+
+    if constexpr (std::is_same_v<T, CMaterial>)
+    {
+        return ASSET_TYPE::MATERIAL;
     }
 }
 

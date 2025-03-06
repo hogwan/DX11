@@ -7,10 +7,36 @@ private:
 	T* m_Asset;
 
 public:
-	T* Get() { return m_Asset; }
-	T** GetAddressOf() { return &m_Asset; }
+	T* Get()  const { return m_Asset; }
+	T** GetAddressOf()  const { return &m_Asset; }
 
 public:
+	bool operator == (T* _Asset) const
+	{
+		if (m_Asset == _Asset)
+			return true;
+
+		return false;
+	}
+
+	bool operator != (T* _Asset) const
+	{
+		return !((*this) == _Asset);
+	}
+
+	bool operator == (const Ptr<T>& _Asset) const
+	{
+		if (m_Asset == _Asset.m_Asset)
+			return true;
+
+		return false;
+	}
+
+	bool operator != (const Ptr<T>& _Asset) const
+	{
+		return !((*this) == _Asset.m_Asset);
+	}
+
 	void operator = (T* _Asset)
 	{
 		if (nullptr != m_Asset)
@@ -69,3 +95,18 @@ public:
 		}
 	}
 };
+
+template<typename T>
+bool operator == (void* _Asset, const Ptr<T>& _Ptr)
+{
+	if (_Asset == _Ptr.Get())
+		return true;
+
+	return false;
+}
+
+template<typename T>
+bool operator != (void* _Asset, const Ptr<T>& _Ptr)
+{
+	return !(_Asset == _Ptr);
+}

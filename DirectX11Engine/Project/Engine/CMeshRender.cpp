@@ -22,11 +22,8 @@ void CMeshRender::render()
 	// 오브젝트의 위치값을 상수버퍼를 통해서 바인딩
 	GetOwner()->Transform()->Binding();
 	
-	//사용할 쉐이더 바인딩
-	GetShader()->Binding();
-
-	// 사용할 텍스쳐 바인딩
-	GetTexture()->Binding(0);
+	//사용할 머티리얼 바인딩
+	GetMaterial()->Binding();
 
 	// 메시 바인딩 및 랜더링
 	GetMesh()->Render();

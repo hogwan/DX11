@@ -1,5 +1,8 @@
 #ifndef _STD2D
 #define _STD2D
+
+#include "value.fx"
+
 struct VS_IN
 {
     float3 vPos : POSITION;
@@ -14,17 +17,7 @@ struct VS_OUT
     float2 vUV : TEXCOORD;
 };
 
-cbuffer TRANSFORM : register(b0)
-{
-    row_major matrix g_matWorld;
-    row_major matrix g_matView;
-    row_major matrix g_matProj;
-}
 
-SamplerState g_Sam_0 : register(s0);
-SamplerState g_Sam_1 : register(s0);
-
-Texture2D g_tex : register(t0);
 
 VS_OUT VS_Std2D(VS_IN _in)
 {
@@ -43,7 +36,21 @@ VS_OUT VS_Std2D(VS_IN _in)
 
 float4 PS_Std2D(VS_OUT _in) : SV_Target
 {
-    float4 vColor = g_tex.Sample(g_Sam_0, _in.vUV);
+    float4 vColor = (float4) 0.f;
+    if(g_int_0 == 0)
+    {
+        vColor = g_tex_1.Sample(g_Sam_0, _in.vUV);
+    }
+    else if(g_int_0 == 1)
+    {
+        vColor = float4(1.f, 1.f, 0.f, 1.f);
+    }
+    
+    else if(g_int_0 == 2)
+    {
+        vColor = float4(0.f, 1.f, 1.f, 1.f);
+        
+    }
     return vColor;
 }
 
