@@ -12,9 +12,16 @@
 
 CCamera::CCamera()
 	:CComponent(COMPONENT_TYPE::CAMERA)
+	, m_ProjType(PROJ_TYPE::PERSPECTIVE)
 	, m_CamPriority(-1)
-	, m_Far(1000.f)
+	, m_FOV(XM_PI / 3.f)
+	, m_Far(10000.f)
+	, m_Width(0.f)
+	, m_Scale(1.f)
 {
+	Vec2 vRenderResolution = CDevice::GetInst()->GetRenderResolution();
+	m_Width = vRenderResolution.x;
+	m_AspectRatio = vRenderResolution.x / vRenderResolution.y;
 }
 
 CCamera::~CCamera()
@@ -41,9 +48,15 @@ void CCamera::finaltick()
 	m_matView = matViewTrans * matViewRot;
 
 	// Proj 행렬 계산
-	Vec2 vRenderResolution = CDevice::GetInst()->GetRenderResolution();
-	float AspectRatio = vRenderResolution.x / vRenderResolution.y;
-	m_matProj = XMMatrixPerspectiveFovLH((XM_PI / 3.f), AspectRatio, 1.f, m_Far);
+	if (PROJ_TYPE::PERSPECTIVE == m_ProjType)
+	{
+		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, m_AspectRatio, 1.f, m_Far);
+	}
+
+	else if (PROJ_TYPE::ORTHOGRAPHIC == m_ProjType)
+	{
+		m_matProj = XMMatrixOrthographicLH(m_Width * m_Scale, (m_Width / m_AspectRatio) * m_Scale, 1.f, m_Far);
+	}
 }
 
 void CCamera::render()

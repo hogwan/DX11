@@ -3,10 +3,20 @@
 
 enum class KEY
 {
-	Q,W,E,R,
-	A,S,D,F,
-	Z,X,C,V,
-	T,Y,G,H,
+	Q, W, E, R,
+	A, S, D, F,
+	Z, X, C, V,
+	T, Y, G, H,
+	U,
+	I,
+	O,
+	P,
+	J,
+	K,
+	L,
+	B,
+	N,
+	M,
 
 	_0,
 	_1,

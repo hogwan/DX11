@@ -7,6 +7,7 @@
 #include "CAssetMgr.h"
 #include "CLevelMgr.h"
 #include "CRenderMgr.h"
+#include "CDbgRenderMgr.h"
 
 CEngine::CEngine()
 	: m_hMainHwnd(nullptr)
@@ -26,7 +27,7 @@ int CEngine::init(HWND _hWnd, Vec2 _Resolution)
 	m_Resolution = _Resolution;
 
 	// 윈도우 크기 설정
-	RECT rt = { 0,0,m_Resolution.x,m_Resolution.y };
+	RECT rt = { 0,0,(LONG)(m_Resolution.x),(LONG)(m_Resolution.y) };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	SetWindowPos(m_hMainHwnd, nullptr, 0, 0, rt.right - rt.left, rt.bottom - rt.top, 0);
 
@@ -64,4 +65,8 @@ void CEngine::progress()
 	// ===========
 	// Target Clear
 	CRenderMgr::GetInst()->render();
+	CDbgRenderMgr::GetInst()->render();
+
+	// Present
+	CDevice::GetInst()->Present();
 }

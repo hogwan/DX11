@@ -39,7 +39,7 @@ float4 PS_Std2D(VS_OUT _in) : SV_Target
     float4 vColor = (float4) 0.f;
     if(g_int_0 == 0)
     {
-        vColor = g_tex_1.Sample(g_Sam_0, _in.vUV);
+        vColor = g_tex_0.Sample(g_Sam_0, _in.vUV);
     }
     else if(g_int_0 == 1)
     {

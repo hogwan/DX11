@@ -114,3 +114,20 @@ enum TEX_PARAM
 
 	END,
 };
+
+
+enum class DEBUG_SHAPE
+{
+	RECT,
+	CIRCLE,
+	LINE,
+
+	CUBE,
+	SPHERE,
+};
+
+enum class PROJ_TYPE
+{
+	ORTHOGRAPHIC,
+	PERSPECTIVE,
+};

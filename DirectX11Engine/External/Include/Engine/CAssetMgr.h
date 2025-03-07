@@ -101,7 +101,7 @@ inline Ptr<T> CAssetMgr::FindAsset(const wstring& _strKey)
     T* pAsset = dynamic_cast<T*>(iter->second.Get());
     return pAsset;
 #else
-    return (T*)iter->second;
+    return (T*)((iter->second).Get());
 #endif
 }
 

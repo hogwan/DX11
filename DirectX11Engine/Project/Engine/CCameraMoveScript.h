@@ -9,6 +9,10 @@ private:
 public:
     virtual void tick() override;
 
+private:
+    void MoveByPerspective();
+    void MoveByOrthographic();
+
 public:
     CCameraMoveScript();
     ~CCameraMoveScript();

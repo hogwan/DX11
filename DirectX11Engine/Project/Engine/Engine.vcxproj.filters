@@ -133,6 +133,9 @@
     <Filter Include="08.Asset\Shader\ComputeShader">
       <UniqueIdentifier>{a4f6e0be-cc94-4a2c-a9fd-c1e94738291b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Manager\DebugRenderMgr">
+      <UniqueIdentifier>{ba088077-226a-48da-ac07-f396b228a383}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -255,6 +258,9 @@
     <ClInclude Include="CMaterial.h">
       <Filter>08.Asset\Material</Filter>
     </ClInclude>
+    <ClInclude Include="CDbgRenderMgr.h">
+      <Filter>04.Manager\DebugRenderMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -353,6 +359,12 @@
     <ClCompile Include="CMaterial.cpp">
       <Filter>08.Asset\Material</Filter>
     </ClCompile>
+    <ClCompile Include="CDbgRenderMgr.cpp">
+      <Filter>04.Manager\DebugRenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>01. Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -364,6 +376,9 @@
       <Filter>HLSL\2D</Filter>
     </FxCompile>
     <FxCompile Include="value.fx">
+      <Filter>HLSL\2D</Filter>
+    </FxCompile>
+    <FxCompile Include="debug_shape.fx">
       <Filter>HLSL\2D</Filter>
     </FxCompile>
   </ItemGroup>

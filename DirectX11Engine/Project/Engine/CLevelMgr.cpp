@@ -33,6 +33,7 @@ void CLevelMgr::init()
 	pCamObj->AddComponent(new CTransform);
 	pCamObj->AddComponent(new CCamera);
 	pCamObj->AddComponent(new CCameraMoveScript);
+
 	pCamObj->Camera()->SetCameraPriority(0);
 	m_CurLevel->AddObject(0, pCamObj);
 
@@ -50,10 +51,12 @@ void CLevelMgr::init()
 	pObject->MeshRender()->SetMesh(CAssetMgr::GetInst()->FindAsset<CMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetMaterial(CAssetMgr::GetInst()->FindAsset<CMaterial>(L"Std2DMtrl"));
 
-	pObject->MeshRender()->GetMaterial()->SetScalarparam<int>(INT_0, 0);
 	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CAssetMgr::GetInst()->FindAsset<CTexture>(L"texture\\Character.png"));
 
 	m_CurLevel->AddObject(0,pObject);
+	
+	DrawDebugRect(Vec3(0.f, 0.f, 500.f), Vec3(100.f, 100.f, 1.f), Vec3(0.f, 0.f, 0.f), Vec4(0.f, 1.f, 0.f, 1.f), 100.f);
+	DrawDebugCircle(Vec3(0.f, 0.f, 500.f), 100.f, Vec4(0.f, 1.f, 0.f, 1.f), 100.f);
 }
 
 void CLevelMgr::tick()
